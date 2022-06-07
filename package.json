@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "leaflet": "^1.8.0",
+    "parcel": "^2.6.0"
+  },
+  "name": "rest-countries-api-with-color-theme-switcher-master",
+  "description": "![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)",
+  "version": "1.0.0",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build ../rest-countries-api-with-color-theme-switcher-master/app/index.html"
+  },
+  "author": "Logan",
+  "license": "ISC"
+}

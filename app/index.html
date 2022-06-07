@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="#">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+	integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+	crossorigin=""/>
+	<script type="module" defer src="script.js"></script>
+	<title>Rest Countries API</title>
+</head>
+<body>
+	<header class="app__header drop-shadow-bottom ">
+		<div class="header__wrapper d-flex container">
+			<p class="header__title">Where in the World ?</p>
+			<div class="header__mode">
+				<span class="header__icon">
+					<svg class="svg--icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+						<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+					</svg>
+				</span>
+				<span class="header__mode--text">Dark mode</span>
+			</div>
+		</div>
+	</header>
+
+	<div class="overview">
+
+		<div class="container">
+			<div class="wrapper__form-filter">
+				<form class="app__search-bar drop-shadow-bottom ">
+
+					<button class="search-bar__btn">
+						<svg class="search-bar--svg " xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+							<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+						</svg>
+					</button>
+
+					<input
+						class="search-bar__input text-max-length"
+						type="text"
+						class="search-bar--input"
+						placeholder="Search for a country...">
+
+						<div class="app__result-search-bar">
+
+							<div class="result-search-bar__wrapper drop-shadow-bottom"></div>
+						</div>
+				</form>
+		
+					<div class="app__filter drop-shadow-bottom" id="app__filter">
+						<div class="wrapper__filter-default ">
+							<p class="filter__select">Filter by Region</p>
+							<span>
+								<svg class="filter__icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+									<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+								</svg>
+							</span>
+						</div>
+						<div class="wrapper__filter-select-value filter--hidden">
+							<p class="filter-value">Africa</p>
+							<p class="filter-value">Americas</p>
+							<p class="filter-value">Asia</p>
+							<p class="filter-value">Europe</p>
+							<p class="filter-value">Oceania</p>
+						</div>
+					</div>
+				
+			</div>
+		</div>
+
+		<div class="countries__container">
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+			
+						<h2 class="country__name skeletton__title"></h2>
+					
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="country drop-shadow-bottom skelleton" data-country="">
+				<div class="country__flag skeletton__img"></div>
+				<div class="country__wrapper">
+
+					<h2 class="country__name skeletton__title"></h2>
+
+					<div class="country__overview__wrapper">
+						<div class="country__population--wrapper country__overview skeletton__details">
+							<span class="country__population bold"></span>
+							<span class="country__population--name"></span>
+						</div>
+						<div class="country__region--wrapper country__overview skeletton__details">
+							<span class="country__region bold"></span>
+							<span class="country__region--name"></span>
+						</div>
+						<div class="country__capital--wrapper country__overview skeletton__details">
+							<span class="country__capital bold"></span>
+							<span class="country__capital--name"></span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div> 
+	</div> 
+
+		<div class="country__details"></div>
+</body>
+</html>
